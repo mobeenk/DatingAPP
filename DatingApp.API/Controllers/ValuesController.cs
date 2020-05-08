@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore; //to use await
 using  DatingApp.API.Data;
+using Microsoft.AspNetCore.Authorization;
+
 namespace DatingApp.API.Controllers
 {
+    [Authorize] // authorize request this means we wont access it and get 401 error
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -18,6 +21,7 @@ namespace DatingApp.API.Controllers
             _context = context;
         }
         // GET api/values
+        //http://localhost:5000/api/values
         [HttpGet]
         public async Task<IActionResult> GetValues()
         {
@@ -27,10 +31,12 @@ namespace DatingApp.API.Controllers
         }
 
         // GET api/values/5
+          //http://localhost:5000/api/values/2
+        [AllowAnonymous]
         [HttpGet("{id}")]
-        public IActionResult GetValues(int id)
+        public async Task<IActionResult> GetValues(int id)
         {
-            var value = _context.Values.FirstOrDefault(x => x.Id == id);
+            var value = await _context.Values.FirstOrDefaultAsync(x => x.Id == id);
             return Ok(value);
         }
 
