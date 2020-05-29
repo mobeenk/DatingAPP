@@ -1,0 +1,102 @@
+[
+    {
+      "Username": "Barr",
+      "Gender": "male",
+      "DateOfBirth": "1989-12-29",
+      "Password": "password",
+      "KnownAs": "Barr",
+      "Created": "2017-03-18",
+      "Introduction": "Reprehenderit reprehenderit anim commodo ut aute. Tempor ea cupidatat aliqua non commodo aute. Nisi do eiusmod est cupidatat laboris aliqua consectetur ex consectetur enim sint. Irure culpa proident anim reprehenderit commodo. Aute sint deserunt magna eiusmod laboris sint aute proident nulla elit ea non ut eu. Tempor excepteur eiusmod eiusmod laboris et. Dolor amet aliquip aliqua labore sit mollit commodo ut dolor ullamco elit cillum excepteur.\r\n",
+      "LookingFor": "Do qui aute adipisicing officia sunt qui magna voluptate ullamco sit. Enim veniam dolore id ad. Velit duis non et et dolore occaecat fugiat dolor cupidatat amet veniam exercitation laboris.\r\n",
+      "Interests": "Magna sint esse do cillum.",
+      "City": "Guilford",
+      "Country": "Venezuela",
+      "Photos": [
+        {
+          "url": "https://randomuser.me/api/portraits/men/95.jpg",
+          "isMain": true,
+          "description": "Officia Lorem veniam ex voluptate anim dolor."
+        }
+      ]
+    },
+    {
+      "Username": "Monroe",
+      "Gender": "male",
+      "DateOfBirth": "1997-12-02",
+      "Password": "password",
+      "KnownAs": "Monroe",
+      "Created": "2017-05-07",
+      "Introduction": "Dolore non esse do aliquip reprehenderit fugiat consectetur ex elit deserunt. Ad deserunt elit id nostrud proident officia sunt ipsum consectetur ullamco sunt. Et nulla pariatur qui et ad est ex eiusmod Lorem reprehenderit eu. Sit consequat proident laborum aliquip. Sint ut qui laborum enim non id nisi eiusmod. Pariatur labore voluptate consectetur cillum nulla consectetur velit fugiat in ut aute nisi.\r\n",
+      "LookingFor": "Consectetur ut eiusmod deserunt aliqua consectetur est. Esse in labore eiusmod incididunt est deserunt aliquip eiusmod aute. Minim non laboris occaecat anim ex enim in. Ipsum tempor adipisicing aliqua esse reprehenderit. Minim nostrud mollit elit qui nulla culpa cillum consequat. Dolore proident sint excepteur mollit est commodo. Lorem ex elit aliquip aute ullamco consequat aliquip irure in excepteur ullamco Lorem aliqua sint.\r\n",
+      "Interests": "Mollit qui eiusmod proident sint consequat.",
+      "City": "Saddlebrooke",
+      "Country": "Montserrat",
+      "Photos": [
+        {
+          "url": "https://randomuser.me/api/portraits/men/1.jpg",
+          "isMain": true,
+          "description": "Esse culpa ad anim deserunt pariatur veniam commodo cillum ex eiusmod qui aliquip exercitation dolore."
+        }
+      ]
+    },
+    {
+      "Username": "Finch",
+      "Gender": "male",
+      "DateOfBirth": "1956-12-28",
+      "Password": "password",
+      "KnownAs": "Finch",
+      "Created": "2017-01-08",
+      "Introduction": "Ut reprehenderit dolor tempor laboris ipsum pariatur eu velit. Occaecat et elit dolor consequat laborum aute ipsum velit. Id amet ea ex occaecat mollit. Officia elit dolor do enim cupidatat. Reprehenderit elit qui incididunt culpa.\r\n",
+      "LookingFor": "Tempor nisi anim id adipisicing velit enim tempor culpa ipsum esse dolore culpa. Enim exercitation qui amet eiusmod dolore ut est exercitation adipisicing excepteur eiusmod non mollit. Do non esse exercitation adipisicing aliqua magna cillum laborum labore laboris ullamco fugiat eiusmod reprehenderit. Nulla consequat adipisicing nulla duis labore ipsum aliquip ad minim. Eu minim occaecat anim nisi qui. Pariatur laboris irure reprehenderit nostrud nulla mollit non.\r\n",
+      "Interests": "Adipisicing excepteur sint anim sint sit irure do cillum nisi sit irure sint.",
+      "City": "Harleigh",
+      "Country": "Mozambique",
+      "Photos": [
+        {
+          "url": "https://randomuser.me/api/portraits/men/57.jpg",
+          "isMain": true,
+          "description": "Ut eiusmod esse duis est."
+        }
+      ]
+    },
+    {
+      "Username": "Cox",
+      "Gender": "male",
+      "DateOfBirth": "1952-04-11",
+      "Password": "password",
+      "KnownAs": "Cox",
+      "Created": "2017-02-18",
+      "Introduction": "Reprehenderit aute sunt consequat est voluptate labore sunt anim culpa fugiat velit proident ex. Tempor anim aliquip quis et velit reprehenderit aliqua nulla magna qui. Ex amet incididunt reprehenderit eu commodo quis minim elit qui labore anim eiusmod tempor. Deserunt ea enim fugiat ullamco id consectetur aute.\r\n",
+      "LookingFor": "Voluptate enim enim labore duis esse ex anim occaecat proident dolore exercitation. Ex labore enim pariatur velit laborum aliqua nostrud labore sit nostrud excepteur. Pariatur duis Lorem ex nulla laboris aliqua sit. Minim sint minim esse reprehenderit velit ullamco dolore minim consectetur aliqua commodo. Veniam occaecat non officia do in nostrud reprehenderit esse do laborum sit. Culpa et ea consectetur labore. Eiusmod proident nisi fugiat non ad amet voluptate et.\r\n",
+      "Interests": "Fugiat nisi anim sint ad in qui mollit.",
+      "City": "Statenville",
+      "Country": "Guyana",
+      "Photos": [
+        {
+          "url": "https://randomuser.me/api/portraits/men/6.jpg",
+          "isMain": true,
+          "description": "Ullamco tempor ea duis excepteur incididunt nostrud fugiat incididunt pariatur ipsum eu."
+        }
+      ]
+    },
+    {
+      "Username": "Oneal",
+      "Gender": "male",
+      "DateOfBirth": "1992-07-17",
+      "Password": "password",
+      "KnownAs": "Oneal",
+      "Created": "2017-02-25",
+      "Introduction": "Laborum anim cillum est est nisi ullamco ea cupidatat. Dolor eiusmod cupidatat dolor veniam velit ad labore in minim. Eiusmod id ut ea pariatur laboris proident. Consectetur culpa labore exercitation do voluptate est incididunt culpa adipisicing quis incididunt consectetur ex quis.\r\n",
+      "LookingFor": "Nulla pariatur consequat ex culpa in. Quis nostrud sint elit ad proident veniam fugiat do minim amet eiusmod aliquip amet. Dolor ipsum commodo mollit nisi voluptate culpa ad Lorem sunt nisi est aliquip.\r\n",
+      "Interests": "Cillum veniam sint ullamco et irure est laboris.",
+      "City": "Loomis",
+      "Country": "Antigua and Barbuda",
+      "Photos": [
+        {
+          "url": "https://randomuser.me/api/portraits/men/71.jpg",
+          "isMain": true,
+          "description": "Tempor dolor dolor non anim."
+        }
+      ]
+    }
+  ]
