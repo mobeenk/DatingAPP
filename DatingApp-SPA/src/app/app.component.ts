@@ -13,6 +13,7 @@ export class AppComponent {
   constructor(private authService: AuthService) {}
 
   // title = 'DatingApp-SPA';
+ // tslint:disable-next-line: use-lifecycle-interface
  ngOnInit() {
     const token = localStorage.getItem('token');
     // const user: User = JSON.parse(localStorage.getItem('user'));

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'// root is the app module and we must add it there
@@ -9,7 +10,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 // register and login methods here are used in register component ts file
 // becauyse this service is injected in there
 export class AuthService {
-  baseURL = 'http://localhost:5000/api/auth/';
+  baseURL = environment.apiURL + 'auth/';
   jwtHelper = new JwtHelperService();
   decodedToken: any;
 
