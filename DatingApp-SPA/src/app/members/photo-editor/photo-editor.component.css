@@ -1,17 +1,25 @@
-  /*
+ /*
 .img-thumbnail {
     margin: 25px;
     width: 85%;
     height: 85%;
 }
 
+*/
+ 
 .card-body {
     padding: 0 25px;
 }
-
-.card-footer {
+/*  this is for the border around upload area when hovering it with file */
+.nv-file-over {
+    border: dotted 3px red;
+}
+/* to make image on file transparent */
+input[type=file]{
+    color: transparent;
+}
+/* .card-footer {
     padding: 10px 15px;
     background-color: #fff;
     border-top: none;
-} 
-*/
+}  */

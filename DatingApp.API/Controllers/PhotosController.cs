@@ -46,10 +46,11 @@ namespace DatingApp.API.Controllers
             var photo = _mapper.Map<PhotoForReturnDto>(photoFromRepo);
 
             return Ok(photo);
-        }
+        }    
         [HttpPost]
-
-        public async Task<IActionResult> AddPhotoForUser(int userId, [FromForm]PhotoForCreationDto photoForCreationDto)
+                   
+        public async Task<IActionResult> AddPhotoForUser(int userId,
+         [FromForm]PhotoForCreationDto photoForCreationDto)
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                 return Unauthorized();
