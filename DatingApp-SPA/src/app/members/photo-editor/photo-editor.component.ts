@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Photo } from 'src/app/_models/photo';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
-import { environment } from 'src/environments/environment';
+import { Photo } from 'src/app/_models/photo';
+import { AlertifyService } from 'src/app/_services/alertify.service';
 import { AuthService } from 'src/app/_services/auth.service';
+import { UserService } from 'src/app/_services/user.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-photo-editor',
   templateUrl: './photo-editor.component.html',
@@ -10,11 +12,15 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class PhotoEditorComponent implements OnInit {
   @Input() photos: Photo[];
+  // output goes into member-edit ts
+  @Output() getMemberPhotoChange = new EventEmitter<string>();
   uploader: FileUploader;
   hasBaseDropZoneOver: false;
   baseUrl = environment.apiURL;
+  currentMain: Photo;
   // hasAnotherDropZoneOver: false;
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,  private userService: UserService,
+              private alertify: AlertifyService) { }
 
   ngOnInit() {
     this.initializeUploader();
@@ -50,5 +56,27 @@ export class PhotoEditorComponent implements OnInit {
       this.photos.push(photo);
     }
    };
+  }
+  setMainPhoto(photo: Photo) {
+    this.userService
+      .setMainPhoto(this.authService.decodedToken.nameid, photo.id)
+      .subscribe(
+        () => {
+          this.currentMain = this.photos.filter(p => p.isMain === true)[0];
+          this.currentMain.isMain = false;
+          photo.isMain = true;
+          this.getMemberPhotoChange.emit(photo.url);
+          // this.authService.changeMemberPhoto(photo.url);
+          // this.authService.currentUser.photoUrl = photo.url;
+          // localStorage.setItem(
+          //   'user',
+          //   JSON.stringify(this.authService.currentUser)
+          // );
+          // console.log('Image set to main');
+        },
+        error => {
+          this.alertify.error(error);
+        }
+      );
   }
 }
