@@ -16,6 +16,7 @@ export class AuthService {
   jwtHelper = new JwtHelperService();
   decodedToken: any;
   currentUser: User;
+  // this is used in nav.component to make any to any component
   photoUrl = new BehaviorSubject<string>('/assets/user.png');
   currentPhotoUrl = this.photoUrl.asObservable();
 
