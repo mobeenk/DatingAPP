@@ -29,6 +29,7 @@ namespace DatingApp.API.Controllers
              var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
             return Ok(usersToReturn);
         }
+        //Name used in AuthController to get the route directly
          [HttpGet("{id}", Name = "GetUser")]
         public async Task<IActionResult> GetUser(int id)
         {

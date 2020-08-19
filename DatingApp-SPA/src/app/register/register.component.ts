@@ -3,6 +3,8 @@ import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { User } from '../_models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,11 +14,12 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 export class RegisterComponent implements OnInit {
   @Input() valuesFromHome: any;
   @Output() cancelRegister = new EventEmitter();
-  model: any = {};
+  // model: any = {};
+  user: User;
   registerForm: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
   // injecting the angular service
-  constructor(private authService: AuthService, private alertify: AlertifyService
+  constructor(private authService: AuthService, private alertify: AlertifyService , private router: Router
               ,private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -53,14 +56,32 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    if(this.registerForm.valid)
+    {
+      this.user = Object.assign({}, this.registerForm.value); // clone form into empty object
+      this.authService.register(this.user).subscribe
+      (  () => {
+          this.alertify.success('Registeration succeful');
+        } , error => {
+         this.alertify.error(error);
+        }, () => {
+          this.authService.login(this.user).subscribe(  () => {
+            this.router.navigate(['/members']);
+          });
+        }
+      );
+    }
+
+   }
+
     // this.authService.register(this.model).subscribe(() => {
     //    this.alertify.success('registeration succeful');
     // }, error => {
     //     this.alertify.error(error);
     //    }
     // );
-    console.log(this.registerForm.value);
-  }
+    // console.log(this.registerForm.value);
+  
   cancel() {
     this.cancelRegister.emit(false);
     console.log('cancelled');
