@@ -38,6 +38,7 @@ export class RegisterComponent implements OnInit {
   }
 
   createRegisterForm(){
+    // Reactive Forms
     this.registerForm = this.fb.group({
       gender: ['male'],
       username: ['',Validators.required],
