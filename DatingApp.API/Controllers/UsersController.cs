@@ -24,11 +24,15 @@ namespace DatingApp.API.Controllers
             _repo = repo;
         }
         [HttpGet]
-        public async Task<IActionResult> GetUsers()
+        public async Task<IActionResult> GetUsers(UserParams userparams)
         {
-            var users = await _repo.GetUsers();
+            var users = await _repo.GetUsers(userparams);
             //userForListDto carries specific info we want to map
              var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
+
+            Response.AddPagination(users.CurrentPage, users.PageSize,
+             users.TotalCount, users.TotalPages);
+
             return Ok(usersToReturn);
         }
         //Name used in AuthController to get the route directly
