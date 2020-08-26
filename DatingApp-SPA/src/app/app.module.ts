@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // RECOMMENDED
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 //import { MemberListComponent } from './members/member-list/member-list.component';
@@ -72,6 +73,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
       BrowserAnimationsModule,
       ReactiveFormsModule,
       BrowserAnimationsModule,
+      PaginationModule.forRoot(),
       BsDropdownModule.forRoot(),
       BsDatepickerModule.forRoot(),
       TabsModule.forRoot(),
