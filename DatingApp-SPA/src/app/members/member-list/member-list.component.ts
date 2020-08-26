@@ -30,7 +30,7 @@ export class MemberListComponent implements OnInit {
     this.loadUsers();
     // console.log(this.pagination.currentPage);
   }
-  
+  ///
   // }
   loadUsers()  {
     this.userService.getUsers(this.pagination.currentPage , this.pagination.itemsPerPage)
