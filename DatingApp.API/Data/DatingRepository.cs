@@ -43,10 +43,15 @@ namespace DatingApp.API.Data
             var user = await _context.Users.Include(p => p.Photos).FirstOrDefaultAsync(u => u.Id == id);
             return user;
         }
-
+// this brings the users in page accodring the the logged in user gender type
         public async Task<PagedList<User>> GetUsers(UserParams userparams)
         {
-             var users =  _context.Users.Include(p => p.Photos);
+             var users =  _context.Users.Include(p => p.Photos).AsQueryable();
+// dont show the user in shown users
+            users = users.Where(u => u.Id !=  userparams.userId);
+//show opposite sex
+            users = users.Where(u => u.Gender ==  userparams.Gender);
+
              return await PagedList<User>.CreateAsync(users,userparams.PageNumber,userparams.PageSize);
         }
 

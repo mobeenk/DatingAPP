@@ -1,5 +1,6 @@
 namespace DatingApp.API.Helpers
 {
+    // THis class wee used to pass the parameters in usersController
     public class UserParams
     {
         private const int MaxPageSize = 50;
@@ -10,6 +11,9 @@ namespace DatingApp.API.Helpers
             get { return pageSize ; }
             set { pageSize = (value > MaxPageSize) ? MaxPageSize : value; }
         }
+
+        public int userId { get; set; } 
+        public string Gender { get; set; }
         
     }
 }

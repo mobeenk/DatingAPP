@@ -26,8 +26,23 @@ namespace DatingApp.API.Controllers
         [HttpGet]
         // http://localhost:5000/api/users?pageNumber=2&pageSize=2
         // http://localhost:5000/api/users?pageNumber=5
+
+        // http://localhost:5000/api/users?gender=male&pageNumber=2&pageSize=2
         public async Task<IActionResult> GetUsers([FromQuery]UserParams userparams)
         {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value) ;
+
+            var userFromRepo = await _repo.GetUser(currentUserId);
+
+            userparams.userId = currentUserId;
+// if gender not specified, we want search results
+//  to be the opposite sex of the logged in user
+//  if we specified gender in route link
+            if(string.IsNullOrEmpty(userparams.Gender))
+            {
+                userparams.Gender = userFromRepo.Gender == "male" ? "female":"male";
+            }
+
             var users = await _repo.GetUsers(userparams);
             //userForListDto carries specific info we want to map
              var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
