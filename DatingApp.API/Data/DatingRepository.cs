@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -46,11 +47,38 @@ namespace DatingApp.API.Data
 // this brings the users in page accodring the the logged in user gender type
         public async Task<PagedList<User>> GetUsers(UserParams userparams)
         {
-             var users =  _context.Users.Include(p => p.Photos).AsQueryable();
-// dont show the user in shown users
+             var users =  _context.Users.Include(p => p.Photos)
+             .OrderByDescending(u => u.LastActive).AsQueryable();
+        // dont show the user in shown users
             users = users.Where(u => u.Id !=  userparams.userId);
-//show opposite sex
+        //show opposite sex
             users = users.Where(u => u.Gender ==  userparams.Gender);
+
+
+        if(userparams.MinAge != 18 || userparams.MaxAge != 99)
+            {
+                // this return a date from : today - years (the age)
+                var minDob = DateTime.Today.AddYears(-userparams.MaxAge-1);
+                var maxDob = DateTime.Today.AddYears(-userparams.MinAge);
+                // Console.WriteLine(minDob );
+                //   Console.WriteLine(maxDob );
+      
+                users = users.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
+            }
+            if(!string.IsNullOrEmpty(userparams.OrderBy))
+            {
+                switch(userparams.OrderBy)
+                {
+                    case "created":
+                    users = users.OrderByDescending(u => u.Created);
+                    break;
+
+                    default:
+                    users = users.OrderByDescending(u => u.LastActive);
+                    break;
+                }
+            }
+
 
              return await PagedList<User>.CreateAsync(users,userparams.PageNumber,userparams.PageSize);
         }

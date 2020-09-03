@@ -35,19 +35,20 @@ namespace DatingApp.API.Controllers
             var userFromRepo = await _repo.GetUser(currentUserId);
 
             userparams.userId = currentUserId;
-// if gender not specified, we want search results
-//  to be the opposite sex of the logged in user
-//  if we specified gender in route link
+        // if gender not specified, we want search results
+        //  to be the opposite sex of the logged in user
+        //  if we specified gender in route link
             if(string.IsNullOrEmpty(userparams.Gender))
             {
                 userparams.Gender = userFromRepo.Gender == "male" ? "female":"male";
             }
-
+            // here we call the interface method by passing the gender then return the page
             var users = await _repo.GetUsers(userparams);
             //userForListDto carries specific info we want to map
              var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
 
-            Response.AddPagination(users.CurrentPage, users.PageSize,users.TotalCount, users.TotalPages);
+            Response.AddPagination(users.CurrentPage, users.PageSize,
+            users.TotalCount, users.TotalPages);
 
             return Ok(usersToReturn);
         }
