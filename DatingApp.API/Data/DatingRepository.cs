@@ -47,25 +47,15 @@ namespace DatingApp.API.Data
 // this brings the users in page accodring the the logged in user gender type
         public async Task<PagedList<User>> GetUsers(UserParams userparams)
         {
-<<<<<<< HEAD
              var users =  _context.Users.Include(p => p.Photos)
              .OrderByDescending(u => u.LastActive).AsQueryable();
         // dont show the user in shown users
-=======
-             var users =  _context.Users.Include(p => p.Photos).AsQueryable();
-             // users is what we send back
-// dont show the user in shown users
->>>>>>> a615012c30ed823c0ab3b78f2f189102abb08157
             users = users.Where(u => u.Id !=  userparams.userId);
         //show opposite sex
             users = users.Where(u => u.Gender ==  userparams.Gender);
 
-<<<<<<< HEAD
 
         if(userparams.MinAge != 18 || userparams.MaxAge != 99)
-=======
-            if(userparams.MinAge != 18 || userparams.MaxAge != 99)
->>>>>>> a615012c30ed823c0ab3b78f2f189102abb08157
             {
                 // this return a date from : today - years (the age)
                 var minDob = DateTime.Today.AddYears(-userparams.MaxAge-1);
@@ -75,7 +65,6 @@ namespace DatingApp.API.Data
       
                 users = users.Where(u => u.DateOfBirth >= minDob && u.DateOfBirth <= maxDob);
             }
-<<<<<<< HEAD
             if(!string.IsNullOrEmpty(userparams.OrderBy))
             {
                 switch(userparams.OrderBy)
@@ -90,8 +79,6 @@ namespace DatingApp.API.Data
                 }
             }
 
-=======
->>>>>>> a615012c30ed823c0ab3b78f2f189102abb08157
 
              return await PagedList<User>.CreateAsync(users,userparams.PageNumber,userparams.PageSize);
         }
