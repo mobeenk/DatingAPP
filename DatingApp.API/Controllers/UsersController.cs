@@ -25,6 +25,7 @@ namespace DatingApp.API.Controllers
             _repo = repo;
         }
         [HttpGet]
+        //users is COntroller class name will search first Get it finds this method
         // http://localhost:5000/api/users?pageNumber=2&pageSize=2
         // http://localhost:5000/api/users?pageNumber=5
 
@@ -53,6 +54,7 @@ namespace DatingApp.API.Controllers
 
             return Ok(usersToReturn);
         }
+        // http://localhost:5000/api/users/2
         //Name used in AuthController to get the route directly
          [HttpGet("{id}", Name = "GetUser")]
         public async Task<IActionResult> GetUser(int id)

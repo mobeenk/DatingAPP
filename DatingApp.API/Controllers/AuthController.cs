@@ -43,6 +43,7 @@ namespace DatingApp.API.Controllers
 
             var userToReturn = _mapper.Map<UserForDetailedDto>(createdUser);
             // from UserController GetUser API method
+            // http://localhost:5000/api/  users/2 where users is the controller and 2 is parameter in method
             return CreatedAtRoute("GetUser",new {controller = "Users", id = createdUser.Id}, userToReturn);
         }
         //http://localhost:5000/api/auth/login
