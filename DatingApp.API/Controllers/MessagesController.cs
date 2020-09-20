@@ -75,7 +75,8 @@ namespace DatingApp.API.Controllers
          public async Task<IActionResult> CreateMessage(int userId,
           MessageForCreationDto messageForCreationDto)
          {
-                if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+             var sender = await _repo.GetUser(userId);
+                if (sender.Id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
                   return Unauthorized();
                 //    [Route("api/users/{userId}/[controller]")] userId is passed from route
                     // store who sent the message so it's the id of the logged in user
@@ -91,7 +92,7 @@ namespace DatingApp.API.Controllers
 
                 _repo.Add(message);
 
-                var messageToReturn = _mapper.Map<MessageForCreationDto>(message);
+           
                 if (await _repo.SaveAll())
                 {
                     // we do reverse map to only get the required 4 paramaters
@@ -103,10 +104,74 @@ namespace DatingApp.API.Controllers
                 //     "messageSent": "2020-09-08T17:54:09.3906257+03:00",
                 //     "content": "get off "
             //       }
+                    var messageToReturn = _mapper.Map<MessageToReturnDto>(message);
                     return CreatedAtRoute("GetMessage", new {userId, id = message.Id}, messageToReturn);
                 }
                 throw new Exception("Creating the message failed on save");
          }
+    // post request to delete message by id from 1 side of the conversation
+          [HttpPost("{id}")]
+          public async Task<IActionResult> DeleteMessage(int id, int userId)
+          {
+              /*
+              id = 12 the logged in user so this is an incoming message in inbox
+                    [
+                        {
+                            "id":12,
+                            "senderId":5,
+                            "senderKnownAs":"Mcdaniel",
+                            "senderPhotoUrl":"https://randomuser.me/api/portraits/men/1.jpg",
+                            "recipientId":12,
+                            "recipientKnownAs":"Etta",
+                            "recipientPhotoUrl":"https://randomuser.me/api/portraits/women/27.jpg",
+                            "content":"fuckk off psycho",
+                            "isRead":false,
+                            "dateRead":null,
+                            "messageSent":"2020-09-05T17:43:12.9347254"
+                        }
+                    ]
+              */
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                 return Unauthorized();  
+
+              var messageFromRepo = await _repo.GetMessage(id);
+
+              if (messageFromRepo.SenderId == userId)
+                 messageFromRepo.SenderDeleted = true;
+
+              if (messageFromRepo.RecipientId == userId)
+                 messageFromRepo.RecipientDeleted = true;
+
+              if (messageFromRepo.SenderDeleted && messageFromRepo.RecipientDeleted)
+                 _repo.Delete(messageFromRepo);
+
+              if (await _repo.SaveAll())
+                 return NoContent();
+
+              throw new Exception("Error deleting the message");
+          }
+
+          
+        [HttpPost("{id}/read")]
+         public async Task<IActionResult> MarkMessageAsRead(int userId, int id)
+         {
+             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                 return Unauthorized();  
+
+              var message = await _repo.GetMessage(id);
+
+              if (message.RecipientId != userId)
+                 return Unauthorized();
+
+              message.IsRead = true;
+             message.DateRead = DateTime.Now;
+
+              await _repo.SaveAll();
+
+              return NoContent();
+         }
+
+
 
     }
 }

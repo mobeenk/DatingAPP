@@ -38,7 +38,7 @@
        [routerLink]="['/members',messageContainer == 'Outbox' ? 
         message.recipientId: message.senderId]"
        [queryParams]= "{tab:3}" 
-        >
+      >
 <!-- queryparams add query to link which is processed in member-detail ts -->
         <td>{{message.content}}</td>
         <td>
@@ -53,7 +53,10 @@
         </td>
         <td>{{message.messageSent | timeAgo}}</td>
         <td>
-          <button class="btn btn-danger">Delete</button>
+          <button class="btn btn-danger"
+           (click)="deleteMessage(message.id)"
+           (click)= "$event.stopPropagation()"
+          >Delete</button>
         </td>
       </tr>
     </table>

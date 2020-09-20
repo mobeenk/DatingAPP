@@ -86,6 +86,11 @@ namespace DatingApp.API
             app.UseRouting();
             // add corsg
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+
+            app.UseDefaultFiles();//added for publishing, it will loook for wwwroot after we did the ng build
+            app.UseStaticFiles();
+
             app.UseAuthentication();//added
             app.UseAuthorization();
 
